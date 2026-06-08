@@ -1,4 +1,4 @@
-# experiment-lab
+# the-lab
 
 A collection of small experiments, explorations, and tiny personal projects organized by topic.
 
