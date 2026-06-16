@@ -8,6 +8,6 @@ One text field, one button. Submit text → stored in SQLite via a FastAPI POST 
 
 ## Stack
 
-- **Frontend:** React (no styling)
-- **Backend:** FastAPI
+- **Frontend:** React
+- **Backend:** FastAPI, Pydantic (validation)
 - **Database:** SQLite
