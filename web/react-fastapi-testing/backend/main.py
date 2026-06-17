@@ -10,20 +10,25 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 origins = [
-    'http://localhost:5173'
+    "http://localhost:5173"
 ]
 
 app.add_middleware(
     CORSMiddleware, 
-    allow_origins=origins)
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+    )
 
 # add class for MessageBase
 
 class MessageBase(BaseModel):
-    string: str
+    message: str
 
 
 class MessageModel(MessageBase):
+    id: int
     class Config:
         orm_mode = True
 
@@ -42,7 +47,7 @@ models.Base.metadata.create_all(bind=engine)
 
 @app.post("/message/", response_model=MessageModel)
 async def create_message(message: MessageBase, db: db_dependency):
-    db_transaction = models.Message(**message.dict())
+    db_transaction = models.Message(**message.model_dump())
     db.add(db_transaction)
     db.commit()
     db.refresh(db_transaction)
