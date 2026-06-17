@@ -1,4 +1,4 @@
-# the-lab
+# The Lab
 
 A collection of small experiments, explorations, and tiny personal projects organized by topic.
 
@@ -9,4 +9,4 @@ A collection of small experiments, explorations, and tiny personal projects orga
 
 ## Purpose
 
-Personal lab for testing ideas, learning new concepts, and documenting progress across data science and software development.
+Personal lab for testing ideas, learning new concepts, proof of concepts, and documenting progress!
