@@ -2,12 +2,14 @@ import type { ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
+  onClick?: () => void;
 }
 
-const Button = ({ children }: Props) => {
+const Button = ({ children, onClick }: Props) => {
   return (
     <button
       type="button"
+      onClick={onClick}
       style={{
         border: "1px solid black",
         borderRadius: "999px",
