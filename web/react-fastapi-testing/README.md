@@ -4,7 +4,9 @@ Proof of concept for connecting a React frontend to a FastAPI backend with SQLit
 
 ## What it does
 
-One text field, one button. Submit text → stored in SQLite via a FastAPI POST endpoint.
+Button and textfield for inputting strings to database
+
+Currently working on making backend script to display average string length (done in frontend right now)
 
 ## Stack
 

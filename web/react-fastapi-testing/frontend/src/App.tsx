@@ -69,6 +69,16 @@ function App() {
           </button>
         </form>
 
+        <p className="mt-3">
+          Average message length:{" "}
+          {text.length > 0
+            ? (
+                text.reduce((sum, msg) => sum + msg.message.length, 0) /
+                text.length
+              ).toFixed(1)
+            : "N/A"}
+        </p>
+
         <table className="table table-striped table-bordered">
           <thead>
             <tr>
