@@ -3,6 +3,7 @@ from typing import Annotated, List
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from database import SessionLocal, engine
+from sqlalchemy import func, text
 
 import models
 from fastapi.middleware.cors import CORSMiddleware
@@ -32,6 +33,8 @@ class MessageModel(MessageBase):
     class Config:
         orm_mode = True
 
+class StatsModel(BaseModel):
+    avg_length: float
 
 def get_db():
     db = SessionLocal()
@@ -58,3 +61,9 @@ async def create_message(message: MessageBase, db: db_dependency):
 async def read_messages(db: db_dependency, skip: int = 0, limit: int = 100):
     messages = db.query(models.Message).offset(skip).limit(limit).all()
     return messages
+
+@app.get("/message/average_length", response_model=StatsModel)
+async def get_average_length(db: db_dependency):
+    avg_length = db.execute(text("SELECT AVG(LENGTH(message)) FROM messages")).scalar()
+    # avg_length = db.query(func.avg(func.length(models.Message.message))).scalar()
+    return StatsModel(avg_length=round(avg_length, 2) if avg_length is not None else 0.0)

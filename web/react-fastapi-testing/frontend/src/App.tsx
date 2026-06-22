@@ -12,14 +12,21 @@ function App() {
   const [formData, setFormData] = useState({
     message: "",
   });
+  const [averageLength, setAverageLength] = useState<number>(0);
 
   const fetchMessages = async () => {
     const response = await api.get("/message/");
     setText(response.data);
   };
 
+  const fetchAverageLength = async () => {
+    const response = await api.get("/message/average_length");
+    setAverageLength(response.data.avg_length);
+  };
+
   useEffect(() => {
     fetchMessages();
+    fetchAverageLength();
   }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +41,7 @@ function App() {
     event.preventDefault();
     await api.post("/message/", formData);
     fetchMessages();
+    fetchAverageLength();
     setFormData({
       message: "",
     });
@@ -70,13 +78,10 @@ function App() {
         </form>
 
         <p className="mt-3">
-          Average message length:{" "}
-          {text.length > 0
-            ? (
-                text.reduce((sum, msg) => sum + msg.message.length, 0) /
-                text.length
-              ).toFixed(1)
-            : "N/A"}
+          Average message length:
+          {averageLength > 0
+            ? ` ${averageLength} characters`
+            : " No messages yet"}
         </p>
 
         <table className="table table-striped table-bordered">
@@ -99,7 +104,7 @@ function App() {
     </>
   );
 
-  /* legacy code, just in case we need it later
+  /* legacy code, just in case I need it later
   return (
     <>
       <div style={{ display: "flex", gap: "6px" }}>
