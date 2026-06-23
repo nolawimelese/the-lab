@@ -1,6 +1,6 @@
 # The Lab
 
-A collection of small experiments, explorations, and tiny personal projects organized by topic.
+A collection of experiments, explorations, code snippets, and tiny personal projects organized by topic.
 
 ## Structure
 

@@ -10,6 +10,6 @@ Currently working on making backend script to display average string length (don
 
 ## Stack
 
-- **Frontend:** React
-- **Backend:** FastAPI, Pydantic (validation)
+- **Frontend:** Vite, React
+- **Backend:** Uvicorn, FastAPI, Pydantic
 - **Database:** SQLite
