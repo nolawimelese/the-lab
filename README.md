@@ -1,12 +1,11 @@
 # The Lab
 
-A collection of experiments, explorations, code snippets, and tiny personal projects organized by topic.
+A personal lab of experiments, code snippets, and mini projects — for testing ideas, learning new concepts, and building proof of concepts.
 
 ## Structure
 
-- **web**: Full Stack experiments with fastapi, react, and sqlite
+- **web**: Experiments with web development (backend & frontend)
+- **ml**: Machine Learning
 - **misc**: Anything that doesn't fit neatly elsewhere
 
-## Purpose
-
-Personal lab for testing ideas, learning new concepts, proof of concepts, and documenting progress!
+![](./.github/assets/languages.svg)
