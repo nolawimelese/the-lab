@@ -13,8 +13,8 @@ typedef struct linkedlist
     int size;
 } linkedlist;
 
-int add(linkedlist *list, int x);                // add element to end of list
-int add_index(linkedlist *list, int x, int ind); // add element to index
+int add(linkedlist *list, int x);                // add element to front of list
+int add_index(linkedlist *list, int ind, int x); // add element to index
 int remove_index(linkedlist *list, int ind);     // remove element at index
 int size(linkedlist *list);                      // return size of list
 int set(linkedlist *list, int ind, int x);       // set value of element at index
