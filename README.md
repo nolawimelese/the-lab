@@ -4,9 +4,16 @@ A personal lab of experiments, code snippets, and mini projects — for testing 
 
 ## Structure
 
-- **web**: Experiments with web development (frontend & backend)
-- **ml**: Machine Learning
-- **low-level**: Programming with lower-level languages (C, C++)
-- **misc**: Anything that doesn't fit neatly elsewhere
+Each top-level folder is a domain; each folder inside it is a self-contained
+experiment with its own README where one exists.
+
+```
+.
+├── web/         Web development (frontend & backend)
+├── ml/          Machine learning
+├── low-level/   Lower-level languages (C, C++)
+│   └── c/       C projects
+└── misc/        Anything that doesn't fit neatly elsewhere
+```
 
 ![](./.github/assets/languages.svg)
