@@ -10,14 +10,14 @@ The deepest folder is always one self-contained experiment, with its own README.
 
 ```
 .
-├── web/           Web development (frontend & backend)
-├── data/          Data work
-│   ├── ml/        Machine learning
-│   ├── data-eng/  ETL / ELT pipelines
-│   └── pdsh/      Python Data Science Handbook, chapter by chapter
-├── low-level/     Lower-level languages (C, C++)
-│   └── c/         C projects
-└── misc/          Anything that doesn't fit neatly elsewhere
+├── web/                          Web development (frontend & backend)
+├── data/
+│   ├── ml/                       Machine learning
+│   ├── data-eng/                 ETL / ELT pipelines
+│   └── data-science-handbook/    Working through the Python Data Science Handbook
+├── low-level/
+│   └── c/                        C projects
+└── misc/                         Anything that doesn't fit neatly elsewhere
 ```
 
 ![](./.github/assets/languages.svg)
