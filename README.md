@@ -6,7 +6,7 @@ A personal lab of experiments, code snippets, and mini projects — for testing 
 
 Top-level folders are domains, a few are split into sub-domains.
 
-The deepest folder is always one self-contained experiment, with its own README.
+The deepest folder is always one self-contained experiment, with its own README. Feel free to explore!
 
 ```
 .
