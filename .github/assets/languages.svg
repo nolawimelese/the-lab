@@ -1,6 +1,6 @@
-<svg width="560" height="260" viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg">
-  <rect width="560" height="260" rx="14" fill="#0d1117"/>
-  <rect x="0.5" y="0.5" width="559" height="259" rx="13.5" fill="none" stroke="#21262d" stroke-width="1"/>
+<svg width="560" height="306" viewBox="0 0 560 306" xmlns="http://www.w3.org/2000/svg">
+  <rect width="560" height="306" rx="14" fill="#0d1117"/>
+  <rect x="0.5" y="0.5" width="559" height="305" rx="13.5" fill="none" stroke="#21262d" stroke-width="1"/>
 
   <!-- Header -->
   <text x="28" y="33" fill="#58a6ff" font-size="10" font-weight="700" letter-spacing="2.2" font-family="'Segoe UI',system-ui,sans-serif">LANGUAGES  ·  nolawimelese/the-lab</text>
@@ -8,26 +8,29 @@
 
   <!-- Bar bg -->
   <rect x="28" y="60" width="504" height="12" rx="6" fill="#161b22"/>
-  <rect x="28" y="60" width="204.5260774342032" height="12" rx="6" fill="#3572A5"/><rect x="226.5260774342032" y="60" width="6" height="12" fill="#3572A5"/><rect x="234.5260774342032" y="60" width="92.94598908645459" height="12" rx="0" fill="#3178c6"/><rect x="329.4720665206578" y="60" width="88.66164297115706" height="12" rx="0" fill="#e34c26"/><rect x="420.13370949181484" y="60" width="81.00968855562567" height="12" rx="0" fill="#555555"/><rect x="503.14339804744054" y="60" width="25.79962136679164" height="12" rx="0" fill="#563d7c"/><rect x="530.9430194142321" y="60" width="11.056980585767846" height="12" rx="6" fill="#f1e05a"/><rect x="530.9430194142321" y="60" width="6" height="12" fill="#f1e05a"/>
+  <rect x="28" y="60" width="201.79936270739478" height="12" rx="6" fill="#3572A5"/><rect x="223.79936270739478" y="60" width="6" height="12" fill="#3572A5"/><rect x="231.79936270739478" y="60" width="91.70684540160423" height="12" rx="0" fill="#3178c6"/><rect x="325.506208108999" y="60" width="87.47961762443687" height="12" rx="0" fill="#e34c26"/><rect x="414.98582573343583" y="60" width="79.92967805735634" height="12" rx="0" fill="#555555"/><rect x="496.9155037907922" y="60" width="25.455664212723875" height="12" rx="0" fill="#563d7c"/><rect x="524.371168003516" y="60" width="10.90957037688166" height="12" rx="0" fill="#f1e05a"/><rect x="537.2807383803977" y="60" width="6.719261619602242" height="12" rx="6" fill="#DA5B0B"/><rect x="537.2807383803977" y="60" width="6" height="12" fill="#DA5B0B"/>
 
   <!-- Entries -->
   
     <circle cx="35.0" cy="112" r="5" fill="#3572A5"/>
     <text x="48.0" y="116" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">Python</text>
-    <text x="48.0" y="132" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">40.6%  ·  10.9 KB · 6 files</text>
+    <text x="48.0" y="132" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">40.0%  ·  10.9 KB · 6 files</text>
     <circle cx="287.0" cy="112" r="5" fill="#3178c6"/>
     <text x="300.0" y="116" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">TypeScript</text>
-    <text x="300.0" y="132" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">18.4%  ·  5.0 KB · 7 files</text>
+    <text x="300.0" y="132" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">18.2%  ·  5.0 KB · 7 files</text>
     <circle cx="35.0" cy="158" r="5" fill="#e34c26"/>
     <text x="48.0" y="162" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">HTML</text>
-    <text x="48.0" y="178" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">17.6%  ·  4.7 KB · 5 files</text>
+    <text x="48.0" y="178" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">17.4%  ·  4.7 KB · 5 files</text>
     <circle cx="287.0" cy="158" r="5" fill="#555555"/>
     <text x="300.0" y="162" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">C</text>
-    <text x="300.0" y="178" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">16.1%  ·  4.3 KB · 2 files</text>
+    <text x="300.0" y="178" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">15.9%  ·  4.3 KB · 2 files</text>
     <circle cx="35.0" cy="204" r="5" fill="#563d7c"/>
     <text x="48.0" y="208" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">CSS</text>
     <text x="48.0" y="224" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">5.1%  ·  1.4 KB · 3 files</text>
     <circle cx="287.0" cy="204" r="5" fill="#f1e05a"/>
     <text x="300.0" y="208" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">JavaScript</text>
     <text x="300.0" y="224" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">2.2%  ·  591 B · 1 file</text>
+    <circle cx="35.0" cy="250" r="5" fill="#DA5B0B"/>
+    <text x="48.0" y="254" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">Jupyter Notebook</text>
+    <text x="48.0" y="270" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">1.3%  ·  364 B · 1 file</text>
 </svg>
