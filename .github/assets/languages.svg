@@ -8,29 +8,29 @@
 
   <!-- Bar bg -->
   <rect x="28" y="60" width="504" height="12" rx="6" fill="#161b22"/>
-  <rect x="28" y="60" width="201.79936270739478" height="12" rx="6" fill="#3572A5"/><rect x="223.79936270739478" y="60" width="6" height="12" fill="#3572A5"/><rect x="231.79936270739478" y="60" width="91.70684540160423" height="12" rx="0" fill="#3178c6"/><rect x="325.506208108999" y="60" width="87.47961762443687" height="12" rx="0" fill="#e34c26"/><rect x="414.98582573343583" y="60" width="79.92967805735634" height="12" rx="0" fill="#555555"/><rect x="496.9155037907922" y="60" width="25.455664212723875" height="12" rx="0" fill="#563d7c"/><rect x="524.371168003516" y="60" width="10.90957037688166" height="12" rx="0" fill="#f1e05a"/><rect x="537.2807383803977" y="60" width="6.719261619602242" height="12" rx="6" fill="#DA5B0B"/><rect x="537.2807383803977" y="60" width="6" height="12" fill="#DA5B0B"/>
+  <rect x="28" y="60" width="424.68618562482476" height="12" rx="6" fill="#DA5B0B"/><rect x="446.68618562482476" y="60" width="6" height="12" fill="#DA5B0B"/><rect x="454.68618562482476" y="60" width="32.185998691466494" height="12" rx="0" fill="#3572A5"/><rect x="488.8721843162913" y="60" width="14.62678755023834" height="12" rx="0" fill="#3178c6"/><rect x="505.49897186652964" y="60" width="13.952565660342088" height="12" rx="0" fill="#e34c26"/><rect x="521.4515375268718" y="60" width="12.748387699785027" height="12" rx="0" fill="#555555"/><rect x="536.1999252266568" y="60" width="4.060052341340312" height="12" rx="0" fill="#563d7c"/><rect x="542.2599775679971" y="60" width="2" height="12" rx="6" fill="#f1e05a"/><rect x="542.2599775679971" y="60" width="6" height="12" fill="#f1e05a"/>
 
   <!-- Entries -->
   
-    <circle cx="35.0" cy="112" r="5" fill="#3572A5"/>
-    <text x="48.0" y="116" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">Python</text>
-    <text x="48.0" y="132" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">40.0%  ·  10.9 KB · 6 files</text>
-    <circle cx="287.0" cy="112" r="5" fill="#3178c6"/>
-    <text x="300.0" y="116" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">TypeScript</text>
-    <text x="300.0" y="132" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">18.2%  ·  5.0 KB · 7 files</text>
-    <circle cx="35.0" cy="158" r="5" fill="#e34c26"/>
-    <text x="48.0" y="162" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">HTML</text>
-    <text x="48.0" y="178" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">17.4%  ·  4.7 KB · 5 files</text>
-    <circle cx="287.0" cy="158" r="5" fill="#555555"/>
-    <text x="300.0" y="162" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">C</text>
-    <text x="300.0" y="178" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">15.9%  ·  4.3 KB · 2 files</text>
-    <circle cx="35.0" cy="204" r="5" fill="#563d7c"/>
-    <text x="48.0" y="208" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">CSS</text>
-    <text x="48.0" y="224" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">5.1%  ·  1.4 KB · 3 files</text>
-    <circle cx="287.0" cy="204" r="5" fill="#f1e05a"/>
-    <text x="300.0" y="208" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">JavaScript</text>
-    <text x="300.0" y="224" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">2.2%  ·  591 B · 1 file</text>
-    <circle cx="35.0" cy="250" r="5" fill="#DA5B0B"/>
-    <text x="48.0" y="254" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">Jupyter Notebook</text>
-    <text x="48.0" y="270" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">1.3%  ·  364 B · 5 files</text>
+    <circle cx="35.0" cy="112" r="5" fill="#DA5B0B"/>
+    <text x="48.0" y="116" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">Jupyter Notebook</text>
+    <text x="48.0" y="132" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">84.3%  ·  144.2 KB · 6 files</text>
+    <circle cx="287.0" cy="112" r="5" fill="#3572A5"/>
+    <text x="300.0" y="116" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">Python</text>
+    <text x="300.0" y="132" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">6.4%  ·  10.9 KB · 6 files</text>
+    <circle cx="35.0" cy="158" r="5" fill="#3178c6"/>
+    <text x="48.0" y="162" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">TypeScript</text>
+    <text x="48.0" y="178" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">2.9%  ·  5.0 KB · 7 files</text>
+    <circle cx="287.0" cy="158" r="5" fill="#e34c26"/>
+    <text x="300.0" y="162" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">HTML</text>
+    <text x="300.0" y="178" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">2.8%  ·  4.7 KB · 5 files</text>
+    <circle cx="35.0" cy="204" r="5" fill="#555555"/>
+    <text x="48.0" y="208" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">C</text>
+    <text x="48.0" y="224" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">2.5%  ·  4.3 KB · 2 files</text>
+    <circle cx="287.0" cy="204" r="5" fill="#563d7c"/>
+    <text x="300.0" y="208" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">CSS</text>
+    <text x="300.0" y="224" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">0.8%  ·  1.4 KB · 3 files</text>
+    <circle cx="35.0" cy="250" r="5" fill="#f1e05a"/>
+    <text x="48.0" y="254" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">JavaScript</text>
+    <text x="48.0" y="270" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">0.3%  ·  591 B · 1 file</text>
 </svg>
