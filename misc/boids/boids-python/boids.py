@@ -6,8 +6,10 @@ import pygame
 
 # parameters
 # neighbor radius: how close birds have to be to be classified as neighbors
-neighbor_radius = 25
-sep_weight = .5
+neighbor_radius = 50
+sep_weight = .3
+aln_weight = .3
+coh_weight = .3
 speed_limit = 5
 boid_size = 5
 
@@ -27,14 +29,20 @@ class Boid:
         return sep / len(neighbors)
 
     def alignment(self, neighbors):
-        pass
+        aln = pygame.Vector2()
+        for b in neighbors:
+            aln += b.velocity
+        if len(neighbors) == 0:
+            return aln
+        return (aln / len(neighbors)) - self.velocity # subtract velocity so 2 perfectly aligned boids don't just speed up
 
     def cohesion(self, neighbors):
-        pass
+        coh = pygame.Vector2()
+        return coh
 
     def update(self, flock):
         self.neighbors = [b for b in flock if b is not self and self.position.distance_to(b.position) < neighbor_radius]
-        self.velocity += (sep_weight * self.separation(self.neighbors))
+        self.velocity += (sep_weight * self.separation(self.neighbors)) + (aln_weight * self.alignment(self.neighbors)) + (coh_weight * self.cohesion(self.neighbors))
         if (self.velocity.magnitude() > speed_limit):
             self.velocity.scale_to_length(speed_limit)
         self.position += self.velocity
