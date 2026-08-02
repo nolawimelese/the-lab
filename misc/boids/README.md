@@ -1,5 +1,7 @@
 ## BOIDS
 
+I started this idea with HTML in mind, but it'd be easier to code it in python with pygame. My solution is to code both, first in pygame with python, and second in HTML with JS
+
 ### The three rules
 
 Each boid goes by this behavior
