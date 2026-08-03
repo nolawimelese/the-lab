@@ -7,11 +7,11 @@ import pygame
 # parameters
 # neighbor radius: how close birds have to be to be classified as neighbors
 neighbor_radius = 50
-sep_weight = .3
-aln_weight = .3
-coh_weight = .3
-speed_limit = 5
-boid_size = 5
+sep_weight = .1
+aln_weight = .05
+coh_weight = .05
+speed_limit = 4
+boid_size = 3
 
 class Boid:
     def __init__(self, x, y, vx, vy):
@@ -38,7 +38,12 @@ class Boid:
 
     def cohesion(self, neighbors):
         coh = pygame.Vector2()
-        return coh
+        center = pygame.Vector2()
+        for b in neighbors:
+            center += b.position
+        if len(neighbors) == 0:
+            return center
+        return (center/len(neighbors)) - self.position
 
     def update(self, flock):
         self.neighbors = [b for b in flock if b is not self and self.position.distance_to(b.position) < neighbor_radius]
@@ -56,7 +61,7 @@ screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 running = True
 
-flock = [Boid(100,100,1,1), Boid(110,100,1,1), Boid(100,110,1,1)]
+flock = [Boid(100,100,3,2), Boid(120,100,4,1), Boid(100,120,1,2)]
 
 while running:
     for event in pygame.event.get():
