@@ -9,9 +9,10 @@ import pygame
 width, height = 800, 600
 neighbor_radius = 50
 sep_weight = 30 # larger because separation's raw magnitude is 1/distance, not distance
-aln_weight = .6
-coh_weight = .4
-speed_limit = 5
+aln_weight = .4
+coh_weight = .2
+speed_limit = 10
+min_speed = 2 # floor so alignment+cohesion+separation can't cancel out to a dead stop
 boid_size = 5
 
 class Boid:
@@ -50,15 +51,22 @@ class Boid:
             return offset
         return offset.normalize() * speed_limit - self.velocity
 
-    def update(self, flock): # phase 1: read only, so every boid sees the same snapshot
+    def update(self, flock):
         self.neighbors = [b for b in flock if b is not self and self.position.distance_to(b.position) < neighbor_radius]
         self.next_velocity = self.velocity + (sep_weight * self.separation(self.neighbors)) + (aln_weight * self.alignment(self.neighbors)) + (coh_weight * self.cohesion(self.neighbors))
         if (self.next_velocity.magnitude() > speed_limit):
             self.next_velocity.scale_to_length(speed_limit)
+        elif (self.next_velocity.magnitude() < min_speed):
+            if self.next_velocity.length_squared() == 0: # if no direction, keep current heading
+                self.next_velocity = self.velocity.normalize() * min_speed if self.velocity.length_squared() > 0 else pygame.Vector2(min_speed, 0)
+            else:
+                self.next_velocity.scale_to_length(min_speed)
 
     def move(self):
         self.velocity = self.next_velocity
         self.position += self.velocity
+        self.position.x %= width
+        self.position.y %= height
 
     def draw(self, screen):
         pygame.draw.circle(screen, (255,255,255), self.position, boid_size)
