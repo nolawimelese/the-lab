@@ -1,4 +1,5 @@
 import pygame
+import random
 
 # use pygame.Vector2 for position and velocity
 # methods: init, update, and draw
@@ -11,9 +12,10 @@ neighbor_radius = 50
 sep_weight = 30 # larger because separation's raw magnitude is 1/distance, not distance
 aln_weight = .4
 coh_weight = .2
-speed_limit = 10
-min_speed = 2 # floor so alignment+cohesion+separation can't cancel out to a dead stop
-boid_size = 5
+speed_limit = 18
+min_speed = 4 # floor so alignment+cohesion+separation can't cancel out to a dead stop
+boid_size = 3
+num_boids = 200
 
 class Boid:
     def __init__(self, x, y, vx, vy):
@@ -77,7 +79,17 @@ screen = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
 running = True
 
-flock = [Boid(100,100,3,2), Boid(120,100,-2,1), Boid(100,120,3,-2)]
+def spawn_flock(count):
+    flock = []
+    for _ in range(count):
+        x, y = random.uniform(0, width), random.uniform(0, height)
+        angle = random.uniform(0, 360)
+        speed = random.uniform(min_speed, speed_limit)
+        vx, vy = pygame.Vector2(speed, 0).rotate(angle)
+        flock.append(Boid(x, y, vx, vy))
+    return flock
+
+flock = spawn_flock(num_boids)
 
 while running:
     for event in pygame.event.get():
