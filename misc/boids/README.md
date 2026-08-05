@@ -1,6 +1,6 @@
 ## BOIDS
 
-I started this idea with HTML in mind, but it'd be easier to code it in python with pygame. My solution is to code both, first in pygame with python, and second in HTML with JS
+I started this idea with HTML in mind, but it'd be easier to code it in python with pygame. I'm not sure if I'll continue it with HTML + JS, but I might try to replicate it if the pygame version doesn't take too long.
 
 ### The three rules
 
@@ -12,7 +12,10 @@ Each boid goes by this behavior
 
 ### Things I might include for fun
 
+- Screen wrapping
+  - detection wrapping
+
 - Mouse as a predator (or an attractor)
 - Sliders for the weights and view radius, so I can play with it live
 - Spatial hashing
-- Obstacles?
+- Obstacles
