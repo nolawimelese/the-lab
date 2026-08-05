@@ -71,7 +71,13 @@ class Boid:
         self.position.y %= height
 
     def draw(self, screen):
-        pygame.draw.circle(screen, (255,255,255), self.position, boid_size)
+        heading = self.velocity.normalize() if self.velocity.length_squared() > 0 else pygame.Vector2(1, 0)
+        perp = pygame.Vector2(-heading.y, heading.x)
+        nose = self.position + heading * boid_size * 2.5
+        right_wing = self.position - heading * boid_size * 0.3 + perp * boid_size * 1.3
+        tail = self.position - heading * boid_size * 1.2
+        left_wing = self.position - heading * boid_size * 0.3 - perp * boid_size * 1.3
+        pygame.draw.polygon(screen, (255,255,255), [nose, right_wing, tail, left_wing])
 
 
 pygame.init()
