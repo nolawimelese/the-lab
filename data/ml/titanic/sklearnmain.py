@@ -29,7 +29,7 @@ import seaborn as sns
 
 # Handling Data
 
-data = pd.read_csv(os.path.join(os.path.dirname(__file__), 'titanic.csv'))
+data = pd.read_csv('titanic.csv')
 
 
 def normalize_columns(df):
