@@ -58,8 +58,9 @@
 .element-list {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 20px;
+    flex-grow: 1;
 }
 
 .service-grid {
@@ -82,3 +83,13 @@
     background-color: transparent;
 }
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+    padding-bottom: 20px;
+}
