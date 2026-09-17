@@ -14,7 +14,7 @@
   
     <circle cx="35.0" cy="112" r="5" fill="#DA5B0B"/>
     <text x="48.0" y="116" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">Jupyter Notebook</text>
-    <text x="48.0" y="132" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">85.6%  ·  193.9 KB · 10 files</text>
+    <text x="48.0" y="132" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">85.6%  ·  193.9 KB · 12 files</text>
     <circle cx="287.0" cy="112" r="5" fill="#3572A5"/>
     <text x="300.0" y="116" fill="#e6edf3" font-size="12.5" font-weight="500" font-family="'Segoe UI',system-ui,sans-serif">Python</text>
     <text x="300.0" y="132" fill="#8b949e" font-size="10.5" font-family="'Segoe UI',system-ui,sans-serif">6.7%  ·  15.2 KB · 7 files</text>
