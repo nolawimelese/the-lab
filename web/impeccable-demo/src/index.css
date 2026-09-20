@@ -1,0 +1,150 @@
+/* ============================================================
+   Temple — the card catalog world
+   Tokens, reset, and base type. Component styles live in App.css
+   ============================================================ */
+
+:root {
+  /* --- oak ground: the drawer, the room, warm tungsten dark --- */
+  --oak: #1e1712;
+  --oak-2: #261d16;
+  --oak-3: #322619;
+  --oak-line: #3d2f20;
+
+  /* --- manila: the card stock, the glowing paper --- */
+  --manila: #e7d8b6;
+  --manila-2: #dccba4; /* aged / back cards */
+  --manila-edge: #cbb98f;
+  --manila-shadow: rgba(10, 6, 2, 0.55);
+
+  /* --- ink on manila --- */
+  --ink: #26201a;
+  --ink-soft: #5a4f42;
+  --ink-faint: #665a4b; /* AA (~4.8:1) on manila for small labels */
+
+  /* --- paper text sitting on the dark oak ground --- */
+  --paper: #ecdfc2;
+  --paper-soft: #c3b092;
+  --paper-faint: #a3927a; /* AA (~5.9:1) on oak for small honesty copy */
+
+  /* --- oxblood rubber-stamp ink: the single accent --- */
+  --stamp: #a63a50;
+  --stamp-ink: #9a3145;
+  --stamp-bright: #c65068;
+  --stamp-wash: rgba(166, 58, 80, 0.12);
+
+  /* --- supporting hardware + rules --- */
+  --brass: #b08d57;
+  --brass-dim: #8a6d40;
+  --rule-blue: #7089a8;
+  --rule-red: #c07a72;
+
+  --card-radius: 3px;
+
+  --sans: 'Public Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'Courier Prime', ui-monospace, 'Courier New', Consolas, monospace;
+
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--paper-soft);
+  background-color: var(--oak);
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--oak);
+  /* the catalog room: warm pooled light + a whisper of wood grain */
+  background-image:
+    radial-gradient(
+      120% 90% at 50% -10%,
+      rgba(176, 141, 87, 0.14),
+      rgba(176, 141, 87, 0) 55%
+    ),
+    radial-gradient(
+      80% 60% at 82% 8%,
+      rgba(198, 80, 104, 0.06),
+      rgba(198, 80, 104, 0) 60%
+    ),
+    repeating-linear-gradient(
+      92deg,
+      rgba(0, 0, 0, 0.14) 0px,
+      rgba(0, 0, 0, 0.14) 1px,
+      rgba(0, 0, 0, 0) 3px,
+      rgba(0, 0, 0, 0) 7px
+    );
+  background-attachment: fixed;
+  min-height: 100svh;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+::selection {
+  background: var(--stamp);
+  color: var(--manila);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--paper);
+  margin: 0;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--paper);
+  text-underline-offset: 3px;
+  text-decoration-color: var(--brass-dim);
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--stamp-bright);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+}
+
+/* A screen-reader-only helper */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
