@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { flushSync } from 'react-dom'
 import './App.css'
 
 /* ------------------------------------------------------------------ *
@@ -170,6 +171,34 @@ function usePrefersReducedMotion() {
   return reduced
 }
 
+/* --- clipboard with a fallback: async API first, then a text selection
+   the browser's own copy command can pick up (http, old WebViews) --- */
+async function copyToClipboard(text: string, fallbackEl: HTMLElement | null) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text)
+      return true
+    } catch {
+      /* permission denied or insecure context — fall through */
+    }
+  }
+  if (!fallbackEl) return false
+  try {
+    const range = document.createRange()
+    range.selectNodeContents(fallbackEl)
+    const sel = window.getSelection()
+    sel?.removeAllRanges()
+    sel?.addRange(range)
+    const ok = document.execCommand('copy')
+    if (ok) sel?.removeAllRanges()
+    return ok
+  } catch {
+    return false
+  }
+}
+
+type CopyState = 'idle' | 'copied' | 'failed'
+
 /* --- the install command: typed onto a ruled line, with a copy stamp --- */
 function InstallCommand({
   command = 'brew install temple',
@@ -179,68 +208,132 @@ function InstallCommand({
   size?: 'lg' | 'sm'
 }) {
   const reduced = usePrefersReducedMotion()
-  const [typed, setTyped] = useState(reduced ? command : '')
-  const [copied, setCopied] = useState(false)
+  const [typedRaw, setTyped] = useState('')
+  // reduced motion (at mount or toggled later) shows the whole command, no reveal
+  const typed = reduced ? command : typedRaw
+  const [copyState, setCopyState] = useState<CopyState>('idle')
+  const [status, setStatus] = useState('')
   const ref = useRef<HTMLDivElement>(null)
+  const textRef = useRef<HTMLSpanElement>(null)
   const started = useRef(false)
+  const timers = useRef<number[]>([])
+  const resetTimer = useRef<number | undefined>(undefined)
 
   useEffect(() => {
-    // when reduced motion is preferred, initial state already shows the full
-    // command — nothing to animate.
     if (reduced) return
     const el = ref.current
     if (!el) return
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !started.current) {
-          started.current = true
-          let i = 0
-          const tick = () => {
-            i += 1
-            setTyped(command.slice(0, i))
-            if (i < command.length) window.setTimeout(tick, 42)
-          }
-          window.setTimeout(tick, 260)
-        }
-      },
-      { threshold: 0.6 },
-    )
-    io.observe(el)
-    return () => io.disconnect()
+
+    const type = () => {
+      if (started.current) return
+      started.current = true
+      let i = 0
+      const tick = () => {
+        i += 1
+        setTyped(command.slice(0, i))
+        if (i < command.length) timers.current.push(window.setTimeout(tick, 42))
+      }
+      timers.current.push(window.setTimeout(tick, 260))
+    }
+
+    let io: IntersectionObserver | undefined
+    if (typeof IntersectionObserver === 'undefined') {
+      // no observer support: just type.
+      type()
+    } else {
+      io = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) type()
+        },
+        // a sliver in view is enough; the line must never sit blank because a
+        // short viewport can't show 60% of the card at once.
+        { threshold: 0.15 },
+      )
+      io.observe(el)
+      // and a hard floor: whatever the observer does, the command is on the
+      // page within 1.4s of mount (hash jumps, scroll restoration, skip link).
+      timers.current.push(window.setTimeout(type, 1400))
+    }
+
+    return () => {
+      io?.disconnect()
+      timers.current.forEach((t) => window.clearTimeout(t))
+      timers.current = []
+    }
   }, [command, reduced])
 
+  // the copied/failed stamp resets on its own timer; never let it fire on an
+  // unmounted component.
+  useEffect(() => () => window.clearTimeout(resetTimer.current), [])
+
   const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(command)
-    } catch {
-      /* clipboard unavailable — the text is still visible to copy by hand */
+    // finish the typewriter synchronously so what the eye sees — and what the
+    // selection fallback grabs — is the whole command.
+    timers.current.forEach((t) => window.clearTimeout(t))
+    timers.current = []
+    started.current = true
+    flushSync(() => setTyped(command))
+
+    const ok = await copyToClipboard(command, textRef.current)
+    window.clearTimeout(resetTimer.current)
+    if (ok) {
+      setCopyState('copied')
+      setStatus(`Copied "${command}" to the clipboard.`)
+    } else {
+      setCopyState('failed')
+      setStatus(
+        `Couldn’t reach the clipboard. The command is selected — press Ctrl+C or ⌘C to copy it.`,
+      )
     }
-    setCopied(true)
-    window.setTimeout(() => setCopied(false), 1600)
+    resetTimer.current = window.setTimeout(
+      () => {
+        setCopyState('idle')
+        setStatus('')
+      },
+      ok ? 1600 : 4000,
+    )
   }
 
   const done = typed.length === command.length
+  const shown = copyState !== 'idle'
 
   return (
     <div ref={ref} className={`install install--${size}`}>
-      <code className="install__line" aria-label={`Install command: ${command}`}>
+      <code className="install__line">
+        {/* the full command for assistive tech, independent of the typewriter */}
+        <span className="sr-only">{command}</span>
         <span className="install__prompt" aria-hidden="true">
           $
         </span>
-        <span className="install__text">{typed}</span>
+        <span ref={textRef} className="install__text" aria-hidden="true">
+          {typed}
+        </span>
         <span
           className={`install__cursor ${done ? 'is-blinking' : ''}`}
           aria-hidden="true"
         />
       </code>
-      <button type="button" className="install__copy" onClick={copy}>
-        <span className={`install__copyword ${copied ? 'is-hidden' : ''}`}>
+      <button
+        type="button"
+        className={`install__copy ${copyState === 'failed' ? 'is-failed' : ''}`}
+        onClick={copy}
+        aria-label="Copy install command"
+      >
+        <span className={`install__copyword ${shown ? 'is-hidden' : ''}`} aria-hidden="true">
           copy
         </span>
-        <span className={`install__stamp ${copied ? 'is-shown' : ''}`} aria-hidden={!copied}>
-          copied
+        <span
+          className={`install__stamp ${shown ? 'is-shown' : ''} ${
+            copyState === 'failed' ? 'install__stamp--failed' : ''
+          }`}
+          aria-hidden="true"
+        >
+          {copyState === 'failed' ? 'select' : 'copied'}
         </span>
       </button>
+      <span role="status" aria-live="polite" className="sr-only">
+        {status}
+      </span>
     </div>
   )
 }
@@ -308,7 +401,7 @@ function App() {
             </div>
 
             <h1 id="hero-h" className="hero__headline">
-              <span className="stamped">notes,</span>{' '}
+              <span className="stamped stamped--1">notes,</span>{' '}
               <span className="stamped stamped--2">without</span>{' '}
               <span className="stamped stamped--3">the noise.</span>
             </h1>
@@ -345,7 +438,8 @@ function App() {
 
         {/* ------------------- what it does ------------------- */}
         <section id="does" className="section" aria-labelledby="does-h">
-          <div className="section__head">            <h2 id="does-h" className="section__title">
+          <div className="section__head">
+            <h2 id="does-h" className="section__title">
               What it does
             </h2>
             <p className="section__sub">
@@ -368,7 +462,8 @@ function App() {
 
         {/* ---------------- what it doesn't do ---------------- */}
         <section id="doesnt" className="section section--dark" aria-labelledby="doesnt-h">
-          <div className="section__head">            <h2 id="doesnt-h" className="section__title">
+          <div className="section__head">
+            <h2 id="doesnt-h" className="section__title">
               What it doesn’t do
             </h2>
             <p className="section__sub">
@@ -391,7 +486,8 @@ function App() {
 
         {/* ------------------- how it works ------------------- */}
         <section id="how" className="section" aria-labelledby="how-h">
-          <div className="section__head">            <h2 id="how-h" className="section__title">
+          <div className="section__head">
+            <h2 id="how-h" className="section__title">
               From nothing to a saved note
             </h2>
             <p className="section__sub">Three lines. Then you’re out.</p>
@@ -410,7 +506,8 @@ function App() {
 
         {/* ------------------- cheatsheet ------------------- */}
         <section id="keys" className="section section--dark" aria-labelledby="keys-h">
-          <div className="section__head">            <h2 id="keys-h" className="section__title">
+          <div className="section__head">
+            <h2 id="keys-h" className="section__title">
               The whole vocabulary
             </h2>
             <p className="section__sub">
@@ -440,7 +537,8 @@ function App() {
 
         {/* ------------------- voices ------------------- */}
         <section id="voices" className="section" aria-labelledby="voices-h">
-          <div className="section__head">            <h2 id="voices-h" className="section__title">
+          <div className="section__head">
+            <h2 id="voices-h" className="section__title">
               Borrower’s slips
             </h2>
             <p className="section__sub">

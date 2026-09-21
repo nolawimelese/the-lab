@@ -28,8 +28,10 @@
 
   /* --- oxblood rubber-stamp ink: the single accent --- */
   --stamp: #a63a50;
-  --stamp-ink: #9a3145;
-  --stamp-bright: #c65068;
+  --stamp-ink: #9a3145; /* text on manila: 5.1:1 */
+  --stamp-press: #872a3d; /* pressed / hover fill; manila on it 6.1:1 */
+  --stamp-bright: #c65068; /* focus rings only (non-text, ≥3:1 on both grounds) */
+  --stamp-lit: #d46680; /* oxblood as *text* on oak: 5.1:1 */
   --stamp-wash: rgba(166, 58, 80, 0.12);
 
   /* --- supporting hardware + rules --- */
@@ -58,10 +60,6 @@
 
 * {
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -129,6 +127,16 @@ button:focus-visible,
   outline: 2px solid var(--stamp-bright);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/* Windows High Contrast / forced-colors: keep the ring system-colored and
+   make sure nothing that carries meaning is drawn with a background alone. */
+@media (forced-colors: active) {
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid Highlight;
+  }
 }
 
 #root {

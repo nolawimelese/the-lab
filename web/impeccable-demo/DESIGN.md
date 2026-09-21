@@ -17,7 +17,11 @@ colors:
   paper-faint: "#a3927a"
   stamp: "#a63a50"
   stamp-ink: "#9a3145"
+  stamp-press: "#872a3d"
   stamp-bright: "#c65068"
+  stamp-lit: "#d46680"
+  stamp-wash: "rgba(166,58,80,0.12)"
+  manila-shadow: "rgba(10,6,2,0.55)"
   brass: "#b08d57"
   brass-dim: "#8a6d40"
   rule-blue: "#7089a8"
@@ -115,6 +119,12 @@ typography:
     fontSize: "0.96rem"
     fontWeight: 400
     lineHeight: 1.5
+  button:
+    fontFamily: "Courier Prime, ui-monospace, 'Courier New', monospace"
+    fontSize: "0.9rem"
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: "0.04em"
   label-lg:
     fontFamily: "Courier Prime, ui-monospace, 'Courier New', monospace"
     fontSize: "0.88rem"
@@ -153,22 +163,33 @@ spacing:
   section: "96px"
 components:
   button-primary:
-    backgroundColor: "{colors.stamp}"
+    backgroundColor: "{colors.stamp-ink}"
     textColor: "{colors.manila}"
-    typography: "{typography.command}"
+    typography: "{typography.button}"
     rounded: "{rounded.stamp}"
     padding: "0 20px"
   button-primary-hover:
-    backgroundColor: "{colors.stamp-ink}"
+    backgroundColor: "{colors.stamp-press}"
     textColor: "{colors.manila}"
+  button-primary-failed:
+    backgroundColor: "{colors.manila-2}"
+    textColor: "{colors.stamp-ink}"
+    typography: "{typography.button}"
+    rounded: "{rounded.stamp}"
+    padding: "0 20px"
   nav-cta:
     backgroundColor: "transparent"
-    textColor: "{colors.stamp-bright}"
+    textColor: "{colors.stamp-lit}"
     rounded: "{rounded.stamp}"
     padding: "7px 16px"
   nav-cta-hover:
-    backgroundColor: "{colors.stamp}"
+    backgroundColor: "{colors.stamp-ink}"
     textColor: "{colors.manila}"
+  feature-entry:
+    backgroundColor: "{colors.stamp-wash}"
+    textColor: "{colors.stamp-press}"
+    rounded: "{rounded.stamp}"
+    padding: "7px 10px"
   card:
     backgroundColor: "{colors.manila}"
     textColor: "{colors.ink}"
@@ -212,7 +233,7 @@ The accent discipline is the whole point. Oxblood stamp ink appears only where a
 A warm archival palette built from three material families — oak (the room), manila (the cards), and oxblood (the ink) — with brass and ruled-line supporting hues. No cool greys and no pure black anywhere.
 
 ### Primary
-- **Oxblood Stamp Ink** (`#a63a50`, deepened to `#9a3145` for pressed ink, brightened to `#c65068` for focus rings and CTA labels): The sole accent. Used only where a rubber stamp lands — the stamped headline, the copy button, date-stamp spec chips, "withdrawn" marks, prompts, and section links. `stamp-wash` (`rgba(166,58,80,0.12)`) tints feature entry chips.
+- **Oxblood Stamp Ink** (`#a63a50`; `stamp-ink` `#9a3145` for ink as text on manila and the primary button fill, 5.1:1; `stamp-press` `#872a3d` for the pressed/hover fill and the filed-entry text, manila on it 6.1:1; `stamp-lit` `#d46680` the only oxblood permitted as *text on oak*, 5.1:1, used by the nav CTA; `stamp-bright` `#c65068` for focus rings only, never text): The sole accent, a five-step ramp so it can hold AA on both grounds without a second hue. Used only where a rubber stamp lands — the stamped headline, the copy button, date-stamp spec chips, "withdrawn" marks, prompts, and section links. `stamp-wash` tints feature entry chips.
 
 ### Neutral
 - **Deep Warm Oak** (`#1e1712`, with `#261d16` / `#322619` layering steps and `#3d2f20` hairlines): The ground — body background, dark section bands, footer drawer front, and all borders on dark surfaces. The room, never a screen.
@@ -270,7 +291,9 @@ Every mono/prose size the page actually ships, recorded so none reads as off-ram
 
 Centered single-column reading measure inside a 1180px max-width container, gutters of 24px (18px under 720px). Vertical rhythm is a 96px section pad (68px under 720px). The spacing scale in use runs roughly 4 / 10 / 16 / 24 / 48px. Sections alternate between the plain oak ground and darker inset bands (`section--dark`, oak-2 with a top radial glow and hairline borders top and bottom) to pace the page like drawers in a cabinet.
 
-Multi-card zones are explicit grids: features are a 5-column "tray" (5 held on purpose), non-features an `auto-fit minmax(230px)` stack, steps and voices 3-column, the cheatsheet a 2-column definition grid. Responsive collapse is staged: the tray goes `auto-fit minmax(200px)` at 1080px, voices/steps/cheat drop to one column at 900px, and at 720px everything stacks to a single column, all card rotations flatten, and the install command goes vertical.
+Multi-card zones are explicit grids: features and non-features are both 5-column trays (`repeat(5, 1fr)`, 16px gap) — five held on purpose, and the refusals mirror the features one-for-one, so neither zone may ever strand a fifth card on its own row. Steps and voices are content-driven (`auto-fit minmax(240px)` / `minmax(200px)`), the cheatsheet a 2-column definition grid (`auto-fit minmax(280px)`). Section heads sit on the container's left edge in light and dark bands alike; dark bands centre their children at 1180px and keep the head's 640px measure inside that.
+
+Responsive collapse is staged: at 1080px both trays go `auto-fit minmax(200px)` (3 + 2); at 900px the steps become a numbered ledger (numeral in a 3.2rem margin column, command and note beside it) and the voices stack to one column at a 640px measure with their disclaimer aligned to it; at 720px everything stacks to a single column, all card rotations flatten, the install command goes vertical, the four spec stamps form a 2×2 block, and the CTA fine print drops its dot separators so no line ends on one. A 360px step tightens the nav rail and drawer tabs without hiding anything, and a landscape-phone step (`max-height: 520px`) shrinks the hero so headline and command both land in the first viewport.
 
 ## Elevation & Depth
 
@@ -294,13 +317,15 @@ Small, restrained radii throughout — this is paper and hardware, not soft plas
 
 ### Buttons
 - **Shape:** Sharp, near-square (2px radius).
-- **Primary (copy / install):** Oxblood `stamp` fill, manila text, `stamp-ink` border, mono 0.9rem, padding `0 20px`. On success it swaps the word "copy" for a rotated "copied" rubber-stamp overlay (-8deg, scale settle). Hover deepens to `stamp-ink`; active nudges down 1px.
-- **Nav CTA ("install"):** Ghost variant — transparent with a `stamp` border and `stamp-bright` text; hover fills `stamp` with manila text. The only outlined button.
+- **Primary (copy / install):** `stamp-ink` fill, manila text, `stamp-press` border, mono 0.9rem (`typography.button`), padding `0 20px`, 52px tall to match the install line (44px minimum on touch). On success it swaps the word "copy" for a rotated "copied" rubber-stamp overlay (-8deg, scale 1.3 → 1 settle over 0.14s) and announces the result in a polite live region. Hover deepens to `stamp-press`; active nudges down 1px.
+- **Primary, failed (`.is-failed`):** When the clipboard is unreachable the ink runs dry — `manila-2` fill, `stamp-ink` text, dashed `stamp-ink` border, and the overlay reads "select" while the command text is left selected for a manual copy. A failed impression, not an error red.
+- **Nav CTA ("install"):** Ghost variant — transparent with a `stamp` border and `stamp-lit` text (the one oxblood step legible on oak); hover fills `stamp-ink` with manila text. The only outlined button.
 
 ### Chips / Stamps
 - **Date-stamp spec** (`.dstamp`): Oxblood outline (1.5px) with faint oxblood glow, `stamp-ink` uppercase mono 0.88rem, ~0.86 opacity, each rotated a few degrees — vibe-stats presented as stamped issue specs.
 - **Withdrawn stamp** (`.nonfeature__stamp`): Absolutely positioned oxblood outline mark ("OUT OF SCOPE", "DECLINED") rotated 9deg over the card corner, ~0.62 opacity — a rejection stamp.
-- **Feature entry** (`.feature__entry`): Dashed oxblood border on `stamp-wash`, mono, truncating — a filed catalog line.
+- **Feature entry** (`.feature__entry`): Dashed oxblood border on `stamp-wash`, `stamp-press` mono at 0.82rem — a filed catalog line. It is content, not chrome: it wraps (`pre-wrap`, keeping typed double spaces) and never truncates.
+- **Withdrawn stamp placement:** On desktop the stamp owns a header band above the title (card padding-top 60px) the way the tray's call tab does; under 720px it overhangs the card's top-right edge (`top: -12px`) and the title moves back up.
 
 ### Cards / Containers
 - **Corner Style:** 3px.
@@ -308,13 +333,13 @@ Small, restrained radii throughout — this is paper and hardware, not soft plas
 - **Shadow Strategy:** The Lit-Paper Rule (see Elevation).
 - **Border:** 1px `manila-edge`.
 - **Internal Padding:** Generous, 30–52px; hero and CTA reserve extra bottom pad (66–76px) for the punched-hole brass strip.
-- **Card furniture:** Optional red header rule with faint blue baseline rules (`card__rulered`), blue divider (`card__ruleblue`), and a bottom `PunchStrip` (punched hole + brass rod).
+- **Card furniture:** Optional red header rule with faint blue baseline rules (`card__rulered`), blue divider (`card__ruleblue`), and a bottom `PunchStrip` (punched hole + brass rod). The red rule's offset is a per-card custom property, `--rule-top` (default 54px under a one-line card head; 78px on the mobile hero where the head stacks; 30–32px on the CTA and cheatsheet cards, which have no head). It must always fall *under* the head band and *above* the first line of content, never through either. The cheatsheet suppresses the blue baselines because its rows rule themselves.
 
 ### Inputs / Command line
-- **Install line** (`.install__line`): Reads as a ruled notebook line, not a form field — faint ink tint background, `manila-edge` border with a 2px `rule-blue` underline, 2px radius, mono. Carries an oxblood `$` prompt, ink command text, and a blinking oxblood block cursor (steps animation; reduced to static 0.55 opacity under reduced-motion).
+- **Install line** (`.install__line`): Reads as a ruled notebook line, not a form field — faint ink tint background, `manila-edge` border with a 2px `rule-blue` underline, 2px radius, mono. Carries an oxblood `$` prompt, ink command text, and a blinking oxblood block cursor (steps animation; reduced to static 0.55 opacity under reduced-motion). The command types itself in at 42ms a character once 15% of the line is in view, with a hard 1.4s floor after mount so it can never sit blank; the full command is always present for assistive tech, and pressing copy finishes the reveal synchronously.
 
 ### Navigation
-- **Style:** Sticky, translucent oak gradient with a 6px backdrop blur and an `oak-line` bottom border. Wordmark = brass authored-SVG glyph + widely-tracked "TEMPLE" + faint "cat. no. 001" catalog number (0.68rem `label-sm`). Links are mono `paper-soft`, hover to `paper`. Under 720px the catalog number and the features/non-features links drop, leaving GitHub + install.
+- **Style:** Sticky, translucent oak gradient with a 6px backdrop blur and an `oak-line` bottom border. Wordmark = brass authored-SVG glyph + widely-tracked "TEMPLE" + faint "cat. no. 001" catalog number (0.68rem `label-sm`). Links are mono `paper-soft`, hover to `paper`, with a 44px-tall hit area (padding grown, margin pulled back so the rhythm holds). Under 720px the catalog number and the features/non-features links drop, leaving GitHub + install; under 360px the rail only breathes less.
 
 ### Signature Components
 - **Drawer tabs** (`.hero__tab`): Manila alphabetical index tabs (A–G / H–N / O–Z) peeking behind the hero card, the middle one lifted and inked oxblood.
@@ -333,6 +358,8 @@ Small, restrained radii throughout — this is paper and hardware, not soft plas
 - **Do** use diegetic library hardware (drawer tabs, punched holes, brass rod, keycaps, date stamps, ruled red/blue lines) as the decorative vocabulary instead of generic UI ornament.
 - **Do** give cards subtle fractional rotation at rest and flatten all rotation, and stack to one column, under 720px.
 - **Do** honor reduced-motion: no typewriter reveal, static cursor, no hover lift dependence.
+- **Do** give every fill-only object (cards, stamps, keycaps, the rod, the pull) a `CanvasText` border under `forced-colors`, and let print strip the oak entirely — the card wants to be paper.
+- **Do** keep every card's red rule under its head and above its content (`--rule-top`), and never truncate a filed line: entries wrap.
 
 ### Don't:
 - **Don't** use near-black, cool grey, or a terminal-window mockup as a *surface* — the darkest surface is warm oak. This is the confirmed anti-reference.
