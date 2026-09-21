@@ -221,14 +221,25 @@
   flex-direction: column;
   align-items: center;
 }
+/* the folder: tabs + card are one physical object, so the tilt lives here and
+   the tabs stay glued to the paper's left edge at every width */
+.hero__folder {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transform: rotate(-0.5deg);
+}
 .hero__drawer {
   position: relative;
   display: flex;
+  align-items: flex-end;
   gap: 10px;
-  margin-bottom: -18px;
+  margin-bottom: -10px;
   z-index: 0;
   padding-left: 40px;
-  align-self: flex-start;
 }
 .hero__tab {
   font-family: var(--mono);
@@ -243,7 +254,8 @@
   box-shadow: 0 -4px 10px -6px rgba(0, 0, 0, 0.5);
 }
 .hero__tab--b {
-  transform: translateY(-4px);
+  /* the pulled tab: the one you're about to open */
+  margin-bottom: 4px;
   color: var(--stamp-ink);
 }
 
@@ -251,9 +263,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 900px;
   padding: 40px 48px 72px;
-  transform: rotate(-0.5deg);
 }
 .hero__cardhead {
   display: flex;
@@ -1029,11 +1039,13 @@
   .hero__drawer {
     padding-left: 18px;
   }
+  .hero__folder {
+    transform: none;
+  }
   .hero__card {
     /* the card head stacks to two lines here; the red rule drops under both */
     --rule-top: 78px;
     padding: 30px 22px 66px;
-    transform: none;
   }
   .hero__cardhead {
     flex-direction: column;
@@ -1258,6 +1270,9 @@
   .foot {
     background: none;
     border-color: var(--ink);
+  }
+  .hero__folder {
+    transform: none;
   }
   .card {
     background: none;

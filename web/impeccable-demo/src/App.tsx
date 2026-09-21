@@ -387,46 +387,49 @@ function App() {
       <main id="top">
         {/* ---------------------- hero ---------------------- */}
         <section className="hero" aria-labelledby="hero-h">
-          <div className="hero__drawer" aria-hidden="true">
-            <span className="hero__tab hero__tab--a">A–G</span>
-            <span className="hero__tab hero__tab--b">H–N</span>
-            <span className="hero__tab hero__tab--c">O–Z</span>
+          {/* tabs and card share one folder so they tilt and align as a single object */}
+          <div className="hero__folder">
+            <div className="hero__drawer" aria-hidden="true">
+              <span className="hero__tab hero__tab--a">A–G</span>
+              <span className="hero__tab hero__tab--b">H–N</span>
+              <span className="hero__tab hero__tab--c">O–Z</span>
+            </div>
+
+            <article className="card hero__card">
+              <div className="card__rulered" />
+              <div className="hero__cardhead">
+                <span className="hero__filed">filed under</span>
+                <span className="hero__subject">terminal · plain text · yours</span>
+              </div>
+
+              <h1 id="hero-h" className="hero__headline">
+                <span className="stamped stamped--1">notes,</span>{' '}
+                <span className="stamped stamped--2">without</span>{' '}
+                <span className="stamped stamped--3">the noise.</span>
+              </h1>
+              <p className="hero__lede">
+                Open it, write, close it. Your notes are just Markdown files in a
+                folder you own — no accounts, no daemon, no second brain to feed.
+              </p>
+
+              <div id="install" className="hero__install">
+                <InstallCommand />
+              </div>
+
+              <div className="datestamps">
+                <span className="datestamps__head">specs — stamped on issue</span>
+                <ul className="datestamps__row" aria-label="At a glance">
+                  {STATS.map((s) => (
+                    <li key={s} className="dstamp">
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <PunchStrip />
+            </article>
           </div>
-
-          <article className="card hero__card">
-            <div className="card__rulered" />
-            <div className="hero__cardhead">
-              <span className="hero__filed">filed under</span>
-              <span className="hero__subject">terminal · plain text · yours</span>
-            </div>
-
-            <h1 id="hero-h" className="hero__headline">
-              <span className="stamped stamped--1">notes,</span>{' '}
-              <span className="stamped stamped--2">without</span>{' '}
-              <span className="stamped stamped--3">the noise.</span>
-            </h1>
-            <p className="hero__lede">
-              Open it, write, close it. Your notes are just Markdown files in a
-              folder you own — no accounts, no daemon, no second brain to feed.
-            </p>
-
-            <div id="install" className="hero__install">
-              <InstallCommand />
-            </div>
-
-            <div className="datestamps">
-              <span className="datestamps__head">specs — stamped on issue</span>
-              <ul className="datestamps__row" aria-label="At a glance">
-                {STATS.map((s) => (
-                  <li key={s} className="dstamp">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <PunchStrip />
-          </article>
 
           <p className="hero__aside">
             <span className="hero__asidemark" aria-hidden="true">
